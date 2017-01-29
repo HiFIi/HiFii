@@ -66,8 +66,8 @@ public abstract class HiFii extends AppCompatActivity {
      */
     private static final int NAVDRAWER_CLOSE_PRELAUNCH = 500;
     // delay to launch nav drawer item, to allow close animation to play
-    private static final int NAVDRAWER_LAUNCH_DELAY = 350;
-    private static final int POST_LAUNCH_FADE = 500;
+    private static final int NAVDRAWER_LAUNCH_DELAY = 400;
+    private static final int POST_LAUNCH_FADE = 600;
     /**
      * END TO-DO
      **/
@@ -206,13 +206,14 @@ public abstract class HiFii extends AppCompatActivity {
         c.moveToFirst();
         int drawerWidth = screenWidthDp - toolbarHeight;
         userName = (HiFiiTextView) findViewById(R.id.user__name);
-        //  userName.setText(c.getString(c.getColumnIndex("display_name")));
+        userName.setText(c.getString(c.getColumnIndex("display_name")));
 
         userName.setText("display_name");
 
-        if (userName == null) {
+      /**  if (userName == null) {
             // oh well
-        }
+        } **/
+        
         c.close();
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -260,15 +261,6 @@ public abstract class HiFii extends AppCompatActivity {
             });
         }
 
-        /**   if (mActionBarToolbar != null) {
-         mActionBarToolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_drawer_white));
-         mActionBarToolbar.setNavigationOnClickListener(new View.OnClickListener() {
-        @Override public void onClick(View view) {
-        mDrawerLayout.openDrawer(GravityCompat.START);
-        }
-        });
-         } **/
-
         if (mToolbar != null) {
             mToolbar.setNavigationIcon(R.drawable.ic_drawer_white);
             mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -305,8 +297,6 @@ public abstract class HiFii extends AppCompatActivity {
                 onNavDrawerSlide(slideOffset);
             }
         });
-
-        //    mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
 
         // populate the nav drawer with the correct items
         populateNavDrawer();
@@ -510,7 +500,7 @@ public abstract class HiFii extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            //   window.setStatusBarColor(Color.BLUE);
+            //   window.setStatusBarColor(Color.BLUE); <--- nope nope nope
         }
 
     }
