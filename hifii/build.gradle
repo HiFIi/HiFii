@@ -1,0 +1,57 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+    defaultConfig {
+        applicationId "io.hifii"
+        minSdkVersion 21
+        targetSdkVersion 25
+        versionCode 1
+        versionName "0.0.1"
+        // Enabling multidex support.
+        multiDexEnabled true
+        versionName "0.0.1"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
+    repositories {
+        flatDir {
+            dirs 'libs'
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            //  debuggable false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-fresco.pro', 'proguard-rules.pro'
+        }
+        debug {
+            applicationIdSuffix ".debug"
+            minifyEnabled false
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-fresco.pro', 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:+', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:+'
+    compile 'com.android.support:design:+'
+    testCompile 'junit:junit:+'
+    compile 'com.android.support:support-v4:+'
+    compile 'com.facebook.fresco:fresco:+'
+    compile 'com.android.support:multidex:+'
+    compile 'com.android.support:palette-v7:+'
+    compile 'com.github.florent37:diagonallayout:+'
+}

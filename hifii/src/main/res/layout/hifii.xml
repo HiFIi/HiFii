@@ -1,0 +1,130 @@
+<!--
+   Copyright 2014 Google Inc. All rights reserved.
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+      http://www.apache.org/licenses/LICENSE-2.0
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+-->
+
+<com.google.samples.apps.iosched.ui.widget.ScrimInsetsScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:customfontdemo="http://schemas.android.com/apk/res-auto"
+    xmlns:fresco="http://schemas.android.com/tools"
+    android:id="@+id/navdrawer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="left|start"
+    android:background="@android:color/white"
+    android:choiceMode="singleChoice"
+    android:elevation="16dp"
+    android:fitsSystemWindows="true"
+    app:appInsetForeground="@color/black__10_percent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:id="@+id/chosen_account_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/session_photo"
+                android:layout_width="match_parent"
+                android:layout_height="180.0dip"
+                android:adjustViewBounds="true"
+                fresco:actualImageScaleType="focusCrop"
+                fresco:fadeDuration="1000"
+                fresco:placeholderImage="@color/wait_color"
+                fresco:placeholderImageScaleType="fitCenter" />
+
+            <View
+                android:id="@+id/overlaycover"
+                android:layout_width="fill_parent"
+                android:layout_height="180dp"
+                android:background="@color/session_photo_scrim" />
+
+            <RelativeLayout
+                android:id="@+id/chosen_account_content_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </RelativeLayout>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile_photo"
+                android:layout_width="@dimen/navdrawer_profile_image_size"
+                android:layout_height="@dimen/navdrawer_profile_image_size"
+                android:layout_gravity="start|bottom|center"
+                android:layout_marginBottom="72.0dip"
+                android:layout_marginLeft="@dimen/play_drawer_item_left_padding"
+                android:layout_marginRight="@dimen/play_drawer_item_right_padding"
+                android:clickable="true"
+                android:src="@drawable/me_debug" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start|bottom|center"
+                android:layout_marginRight="24.0dip"
+                android:orientation="vertical">
+
+                <io.hifii.ui.HiFiiTextView
+                    android:id="@+id/user__name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/drawer_item_icon_left_padding"
+                    android:layout_marginRight="@dimen/drawer_item_icon_right_padding"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textColor="@android:color/white"
+                    android:textSize="14.0sp"
+                    customfontdemo:fontName="Roboto-Medium.ttf" />
+
+                <io.hifii.ui.HiFiiTextView
+                    android:id="@+id/user__handle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="16.0dip"
+                    android:layout_marginLeft="@dimen/drawer_item_icon_left_padding"
+                    android:layout_marginRight="@dimen/drawer_item_icon_right_padding"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:text="CoolTestEmail@hifii.io [DEBUG ONLY]"
+                    android:textColor="@android:color/white"
+                    android:textSize="14.0sp"
+                    customfontdemo:fontName="Roboto-Regular.ttf" />
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Drawer items -->
+            <LinearLayout
+                android:id="@+id/navdrawer_items_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/white"
+                android:fitsSystemWindows="true"
+                android:orientation="vertical" />
+
+        </FrameLayout>
+    </LinearLayout>
+
+</com.google.samples.apps.iosched.ui.widget.ScrimInsetsScrollView>
