@@ -47,7 +47,6 @@
                 fresco:placeholderImageScaleType="fitCenter" />
 
             <View
-                android:id="@+id/overlaycover"
                 android:layout_width="fill_parent"
                 android:layout_height="180dp"
                 android:background="@color/session_photo_scrim" />
@@ -60,7 +59,6 @@
             </RelativeLayout>
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/profile_photo"
                 android:layout_width="@dimen/navdrawer_profile_image_size"
                 android:layout_height="@dimen/navdrawer_profile_image_size"
                 android:layout_gravity="start|bottom|center"
@@ -91,7 +89,6 @@
                     customfontdemo:fontName="Roboto-Medium.ttf" />
 
                 <io.hifii.ui.HiFiiTextView
-                    android:id="@+id/user__handle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"

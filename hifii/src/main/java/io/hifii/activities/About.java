@@ -1,10 +1,13 @@
 package io.hifii.activities;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.view.ViewCompat;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
@@ -18,6 +21,7 @@ import com.google.samples.apps.iosched.ui.widget.ObservableScrollView;
 
 import io.hifii.HiFii;
 import io.hifii.R;
+import io.hifii.ui.HiFiiTypefaceSpan;
 import io.hifii.utils.UIUtils;
 
 import static android.view.ViewTreeObserver.OnGlobalLayoutListener;
@@ -74,7 +78,11 @@ public class About extends HiFii implements ObservableScrollView.Callbacks {
         FLog.setMinimumLoggingLevel(FLog.VERBOSE);
         //  Fresco.initialize(getApplicationContext());
         setContentView(R.layout.about);
-        getSupportActionBar().setTitle("HiFii");
+
+        Typeface font2 = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Medium.ttf");
+        SpannableStringBuilder ss = new SpannableStringBuilder("HiFii");
+        ss.setSpan(new HiFiiTypefaceSpan("", font2), 0, ss.length(), Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
+        getSupportActionBar().setTitle(ss);
 
         mHasPhoto = true;
         /**     mDraweeUri = Uri.parse("http://i.imgur.com/cdHErxs.jpg");
@@ -182,23 +190,22 @@ public class About extends HiFii implements ObservableScrollView.Callbacks {
         // The code below is to change the statusbar color from transparent to a teal
         // green color I used.
         int baseColor = getResources().getColor(R.color.black__10_percent);
-        float alpha = (float) Math.min(0.2, (float) scrollY / mHeaderBox.getHeight());
+        float alpha = (float) Math.min(0.20, (float) scrollY / mHeaderBox.getHeight());
         Window window = getWindow();
         window.setStatusBarColor(UIUtils.getColorWithAlpha(alpha, (darkenColor(baseColor))));
 
-        // ViewCompat.setElevation(draweeView, gapFillProgress * mMaxHeaderElevation);
-        //  ViewCompat.setElevation(mDetailsContainer, gapFillProgress * mMaxHeaderElevation);
+         ViewCompat.setElevation(draweeView, gapFillProgress * mMaxHeaderElevation);
+          ViewCompat.setElevation(mDetailsContainer, gapFillProgress * mMaxHeaderElevation);
         ViewCompat.setElevation(mHeaderBox, gapFillProgress * mMaxHeaderElevation);
         ViewCompat.setElevation(mAddScheduleButtonContainer, gapFillProgress * mMaxHeaderElevation
                 + mFABElevation);
         ViewCompat.setElevation(mAddScheduleButton, gapFillProgress * mMaxHeaderElevation
                 + mFABElevation);
 
-        //  ViewCompat.setTranslationZ(mHeaderBox, gapFillProgress * mMaxHeaderElevation);
+          ViewCompat.setTranslationZ(mHeaderBox, gapFillProgress * mMaxHeaderElevation);
 
-        /* testing
         ViewCompat.setTranslationZ(draweeView, gapFillProgress * mMaxHeaderElevation);
-        ViewCompat.setTranslationZ(parallaxDL, gapFillProgress * mMaxHeaderElevation); */
+        ViewCompat.setTranslationZ(parallaxDL, gapFillProgress * mMaxHeaderElevation);
 
         // Move background photo (parallax effect)
         mPhotoViewContainer.setTranslationY(scrollY * 0.5f);

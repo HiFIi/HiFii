@@ -29,6 +29,7 @@ android {
         release {
             minifyEnabled true
             shrinkResources true
+            //  debuggable false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-fresco.pro', 'proguard-rules.pro'
         }
         debug {
