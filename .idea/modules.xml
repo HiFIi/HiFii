@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/HiFii.iml" filepath="$PROJECT_DIR$/HiFii.iml" />
-      <module fileurl="file://$PROJECT_DIR$/hifii/hifii.iml" filepath="$PROJECT_DIR$/hifii/hifii.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DailyDoggo.iml" filepath="$PROJECT_DIR$/DailyDoggo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dailyDoggo/dailyDoggo.iml" filepath="$PROJECT_DIR$/dailyDoggo/dailyDoggo.iml" />
     </modules>
   </component>
 </project>

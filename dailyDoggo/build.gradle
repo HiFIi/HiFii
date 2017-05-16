@@ -1,0 +1,114 @@
+/*
+ * Copyright (c) 2016-2017 Projekt Substratum
+ * This file is part of Substratum.
+ *
+ * Substratum is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Substratum is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Substratum.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+apply plugin: 'com.android.application'
+
+def getDate() {
+    def date = new Date()
+    def formattedDate = date.format('MM-' + 'dd-' + 'yyyy')
+    return formattedDate
+}
+
+android {
+    applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            output.outputFile = new File(
+                    output.outputFile.parent, "DailyDoggo_" + "${getDate()}" + ".apk")
+        }
+    }
+    compileSdkVersion 25
+    buildToolsVersion "25.0.3"
+    defaultConfig {
+        applicationId "io.hifii"
+        minSdkVersion 21
+        targetSdkVersion 25
+        versionCode 1
+        versionName "0.0.1"
+        // Enabling multidex support.
+        multiDexEnabled true
+        versionName "0.0.1"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        dexOptions {
+            preDexLibraries true
+            maxProcessCount 8
+            // Instead of setting the heap size for the DEX process, increase Gradle's
+            // heap size to enable dex-in-process. To learm more, read the next section.
+            // javaMaxHeapSize "2048m"
+        }
+        aaptOptions {
+            cruncherEnabled true
+        }
+    }
+
+    defaultConfig {
+        jackOptions {
+            enabled true
+            additionalParameters('jack.incremental': 'true')
+        }
+    }
+
+
+    dexOptions {
+        javaMaxHeapSize '4096m'
+        preDexLibraries true
+    }
+
+    compileOptions {
+        incremental true
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            shrinkResources true
+            zipAlignEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt')
+        }
+    }
+}
+
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:+', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:+'
+    compile 'com.android.support:design:+'
+    testCompile 'junit:junit:+'
+    debugCompile 'com.squareup.leakcanary:leakcanary-android:+'
+    releaseCompile 'com.squareup.leakcanary:leakcanary-android:+'
+    testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:+'
+    compile 'com.android.support:support-v4:+'
+    compile 'com.facebook.fresco:fresco:+'
+    compile 'com.facebook.fresco:imagepipeline-okhttp:+'
+    compile 'com.android.support:multidex:+'
+    compile 'com.android.support:palette-v7:+'
+    compile 'com.github.florent37:diagonallayout:+'
+    compile 'com.android.support:percent:+'
+
+}
